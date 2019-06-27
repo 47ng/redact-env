@@ -9,24 +9,6 @@ Redact values of critical environment variables in a string.
 
 ## Installation
 
-✂️---
-_Cut here_
-
-1. [Use this repository as a template](https://github.com/47ng/redact-env/generate) to create your own.
-2. Replace all mentions of `redact-env` with the name
-   of your package.
-3. Setup Travis CI by adding an NPM deploy token and a Slack channel token:
-
-```zsh
-# Copy your NPM deploy token to clipboard, then:
-$ travis encrypt $(pbpaste) --add deploy.api_key --com
-
-# Copy your Slack channel token to clipboard, then:
-$ travis encrypt $(pbpaste) --add notifications.slack.rooms --com
-```
-
---- ✂️
-
 ```shell
 $ yarn add redact-env
 # or
