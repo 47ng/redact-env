@@ -1,6 +1,6 @@
 {
   "name": "redact-env",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Redact values of critical environment variables in a string",
   "main": "dist/index.js",
   "license": "MIT",
