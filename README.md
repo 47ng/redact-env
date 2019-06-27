@@ -1,19 +1,19 @@
-# `typescript-library-starter`
+# 🔒👀 `redact-env`
 
-[![MIT License](https://img.shields.io/github/license/47ng/typescript-library-starter.svg?color=blue)](https://github.com/47ng/typescript-library-starter/blob/master/LICENSE)
-[![Travis CI Build](https://img.shields.io/travis/com/47ng/typescript-library-starter.svg)](https://travis-ci.com/47ng/typescript-library-starter)
-[![Average issue resolution time](https://isitmaintained.com/badge/resolution/47ng/typescript-library-starter.svg)](https://isitmaintained.com/project/47ng/typescript-library-starter)
-[![Number of open issues](https://isitmaintained.com/badge/open/47ng/typescript-library-starter.svg)](https://isitmaintained.com/project/47ng/typescript-library-starter)
+[![MIT License](https://img.shields.io/github/license/47ng/redact-env.svg?color=blue)](https://github.com/47ng/redact-env/blob/master/LICENSE)
+[![Travis CI Build](https://img.shields.io/travis/com/47ng/redact-env.svg)](https://travis-ci.com/47ng/redact-env)
+[![Average issue resolution time](https://isitmaintained.com/badge/resolution/47ng/redact-env.svg)](https://isitmaintained.com/project/47ng/redact-env)
+[![Number of open issues](https://isitmaintained.com/badge/open/47ng/redact-env.svg)](https://isitmaintained.com/project/47ng/redact-env)
 
-Template repository for TypeScript libraries.
+Redact values of critical environment variables in a string.
 
 ## Installation
 
 ✂️---
 _Cut here_
 
-1. [Use this repository as a template](https://github.com/47ng/typescript-library-starter/generate) to create your own.
-2. Replace all mentions of `typescript-library-starter` with the name
+1. [Use this repository as a template](https://github.com/47ng/redact-env/generate) to create your own.
+2. Replace all mentions of `redact-env` with the name
    of your package.
 3. Setup Travis CI by adding an NPM deploy token and a Slack channel token:
 
@@ -28,15 +28,43 @@ $ travis encrypt $(pbpaste) --add notifications.slack.rooms --com
 --- ✂️
 
 ```shell
-$ yarn add typescript-library-starter
+$ yarn add redact-env
 # or
-$ npm i typescript-library-starter
+$ npm i redact-env
 ```
 
 ## Usage
+
+```ts
+import redactEnv from 'redact-env'
+
+const secrets = redactEnv.build(['SECRET_ENV_VAR', 'MY_API_KEY'])
+
+const unsafeString = `
+  ${process.env.SECRET_ENV_VAR}
+  Oh no, the secrets are leaking !
+  ${process.env.MY_API_KEY}
+`
+console.log('unsafe:', unsafeString)
+
+const safeString = redactEnv.redact(unsafeString, secrets)
+console.log('safe:', safeString)
+```
+
+```
+unsafe:
+  QfKcO7cjGoxnLg/28/E7meEu2QaS/wNtFB7wlz+hDZA=
+  Oh no, the secrets are leaking !
+  d9fd627cfd3d6cb597e8faeb2ef0e4583af924aee047125479b2438ee2a18b67
+
+safe:
+  [secure]
+  Oh no, the secrets are leaking !
+  [secure]
+```
 
 ## Configuration
 
 ## License
 
-[MIT](https://github.com/47ng/typescript-library-starter/blob/master/LICENSE) - Made with ❤️ by [François Best](https://francoisbest.com).
+[MIT](https://github.com/47ng/redact-env/blob/master/LICENSE) - Made with ❤️ by [François Best](https://francoisbest.com).

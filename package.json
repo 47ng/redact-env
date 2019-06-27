@@ -1,7 +1,7 @@
 {
-  "name": "typescript-library-starter",
+  "name": "redact-env",
   "version": "0.0.1",
-  "description": "Template repository for TypeScript libraries",
+  "description": "Redact values of critical environment variables in a string",
   "main": "dist/index.js",
   "license": "MIT",
   "author": {
@@ -11,11 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/47ng/typescript-library-starter"
+    "url": "https://github.com/47ng/redact-env"
   },
   "keywords": [
-    "boilerplate",
-    "template"
+    "environment-variables",
+    "redact",
+    "secrets",
+    "security",
+    "logging"
   ],
   "publishConfig": {
     "access": "public"
