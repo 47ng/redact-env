@@ -1,49 +1,52 @@
-export type Secrets = Map<string, RegExp>
+import escapeStringRegexp from 'escape-string-regexp'
 
+/**
+ * Build a RegExp matching the values of secure environment variables.
+ *
+ * @param secureEnv A list of environment variable names to redact
+ * @param env Where to read the values from (defaults to process.env)
+ */
 export const build = (
   secureEnv: string[],
   env: NodeJS.ProcessEnv = process.env
-): Secrets => {
-  const map: Secrets = new Map()
-  Object.keys(env)
+): RegExp => {
+  const unified = Object.keys(env)
     .filter(env => secureEnv.includes(env))
-    .forEach(envName => {
+    .map(envName => {
       const value = env[envName]
-      if (
-        value &&
-        !['true', 'false', 'null'].includes(value) // Ignore JSON values
-      ) {
-        const escapedValue = value
-          .replace(/\$/g, '\\$')
-          .replace(/\./g, '\\.')
-          .replace(/\*/g, '\\*')
-          .replace(/\?/g, '\\?')
-          .replace(/\+/g, '\\+')
-          .replace(/\(/g, '\\(')
-          .replace(/\)/g, '\\)')
-          .replace(/\{/g, '\\{')
-          .replace(/\}/g, '\\}')
-          .replace(/\[/g, '\\[')
-          .replace(/\]/g, '\\]')
-          .replace(/\^/g, '\\^')
-        map.set(envName, new RegExp(escapedValue, 'g'))
+      // Ignore JSON values that are too generic (might erase other fields)
+      if (!value || ['true', 'false', 'null'].includes(value)) {
+        return null
       }
+      const escapedValue = escapeStringRegexp(value)
+      return `(${escapedValue})`
     })
-  return map
+    .filter(x => !!x)
+    .join('|')
+  if (unified === '') {
+    // Use negated negative lookahead to never match anything
+    // https://stackoverflow.com/questions/1723182/a-regex-that-will-never-be-matched-by-anything
+    return new RegExp(/(?!)/, 'g')
+  }
+
+  return new RegExp(unified, 'g')
 }
 
 // --
 
+/**
+ * Redact a string based on a built RegExp (from redactEnv.build).
+ *
+ * @param input The input string to redact
+ * @param regexp A RegExp built by redactEnv.build
+ * @param replace What to replace redacted text with (defaults to '\[secure\]')
+ */
 export const redact = (
   input: string,
-  secrets: Secrets,
+  regexp: RegExp,
   replace: string = '[secure]'
 ) => {
-  let out = input
-  for (const regex of secrets.values()) {
-    out = out.replace(regex, replace)
-  }
-  return out
+  return input.replace(regexp, replace)
 }
 
 // --

@@ -7,6 +7,14 @@
 
 Redact values of critical environment variables in a string.
 
+## ⚠️ Disclaimer
+
+This library might not do exactly what you want it to.
+
+As for anything related to security, read the [caveats](#caveats), check
+out the [source code](./src/index.ts) and the [tests](./src/index.test.ts)
+before using it in production.
+
 ## Installation
 
 ```shell
@@ -45,7 +53,54 @@ safe:
   [secure]
 ```
 
-## Configuration
+## Caveats
+
+### Un-redacted values
+
+`redact-env` will **NOT** redact the following environment variable values:
+
+- `"true"`
+- `"false"`
+- `"null"`
+
+This is because these string-encoded JSON values are not specific to a
+single environment variable, and redacting all the booleans and nulls in
+a string seems overzealous. This is opinionated for a particular usage.
+
+### Parsed numbers in JSON object
+
+`redact-env` **WILL** redact numbers in environment variable values,
+which will pose a problem if you parse them and dump them as numbers in a
+JSON object:
+
+```ts
+import redactEnv from 'redact-env'
+
+process.env.PIN = '1234'
+
+const secrets = redactEnv.build(['PIN'], process.env)
+
+const pin: number = parseInt(process.env.PIN)
+
+const unsafe = JSON.stringify({ pin })
+console.log(unsafe)
+// {"pin":1234} => valid JSON
+
+const safeButIncorrect = redactEnv.redact(unsafe, secrets)
+
+console.log(safeButIncorrect)
+// {"pin":[secure]}  => not valid JSON
+```
+
+### Windows paths in JSON objects
+
+Because of backslash-delimited paths in Windows and string escaping
+occurring in `JSON.stringify`, Windows paths in environment variables
+won't be redacted if present in JSON strings.
+
+In a future release, we might consider detecting the presence of
+backslashes in the environment variable value and having two regexp for
+this secret (one for the plain value and one backslashed-escaped).
 
 ## License
 
