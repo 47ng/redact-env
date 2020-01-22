@@ -61,6 +61,8 @@
     "testEnvironment": "node"
   },
   "husky": {
-    "pre-push": "run-s test build size"
+    "hooks": {
+      "pre-push": "yarn ci"
+    }
   }
 }
