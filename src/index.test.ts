@@ -289,7 +289,7 @@ describe('Real-life usage', () => {
 
   it('redacts URIs', () => {
     const env = {
-      a: 'https://github.com/47ng/redact-env',
+      a: 'https://github.com/47ng/redact-env?query=string&foo=bar#hash',
       b: 'twitter://@fortysevenfx',
       c: 'postgres://username:password@host:port/database'
     }
