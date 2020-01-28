@@ -39,7 +39,7 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^2.2.2",
     "@types/benchmark": "^1.0.31",
-    "@types/jest": "^24.0.23",
+    "@types/jest": "^25.1.0",
     "@types/node": "^13.1.2",
     "benchmark": "^2.1.4",
     "husky": "^4.2.1",
