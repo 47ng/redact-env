@@ -34,7 +34,7 @@
     "ci": "run-s test build size"
   },
   "dependencies": {
-    "escape-string-regexp": "^2.0.0"
+    "escape-string-regexp": "^3.0.0"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^3.0.0",
