@@ -300,3 +300,24 @@ describe('Real-life usage', () => {
     expect(received).toEqual(expected)
   })
 })
+
+describe('Defaults', () => {
+  it('redacts with [secure] by default', () => {
+    const env = {
+      password: 'supersecret'
+    }
+    const secrets = redactEnv.build(['password'], env)
+    const provided = 'my password is supersecret'
+    const expected = 'my password is [secure]'
+    const received = redactEnv.redact(provided, secrets)
+    expect(received).toEqual(expected)
+  })
+  it('uses Node.js process.env by default', () => {
+    process.env.FOO = 'foo'
+    const secrets = redactEnv.build(['FOO'])
+    const provided = 'my password is foo'
+    const expected = 'my password is [secure]'
+    const received = redactEnv.redact(provided, secrets)
+    expect(received).toEqual(expected)
+  })
+})
