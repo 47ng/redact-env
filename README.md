@@ -106,4 +106,4 @@ this secret (one for the plain value and one backslashed-escaped).
 
 ## License
 
-[MIT](https://github.com/47ng/redact-env/blob/master/LICENSE) - Made with ❤️ by [François Best](https://francoisbest.com).
+[MIT](https://github.com/47ng/redact-env/blob/master/LICENSE) - Made with ❤️ by [François Best](https://francoisbest.com) - [Donations welcome](https://paypal.me/francoisbest?locale.x=fr_FR) 🙏
