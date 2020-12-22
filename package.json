@@ -3,6 +3,7 @@
   "version": "0.0.0-semantically-released",
   "description": "Redact values of critical environment variables in a string",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "author": {
     "name": "François Best",
