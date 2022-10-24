@@ -1,13 +1,17 @@
-# 🔒👀 `redact-env`
+<h1 align="center">🔒👀 <code>redact-env</code></h1>
+
+<div align="center">
 
 [![NPM](https://img.shields.io/npm/v/redact-env?color=red)](https://www.npmjs.com/package/redact-env)
-[![MIT License](https://img.shields.io/github/license/47ng/redact-env.svg?color=blue)](https://github.com/47ng/redact-env/blob/master/LICENSE)
-[![Travis CI Build](https://img.shields.io/travis/com/47ng/redact-env.svg)](https://travis-ci.com/47ng/redact-env)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=47ng/redact-env)](https://dependabot.com)
-[![Average issue resolution time](https://isitmaintained.com/badge/resolution/47ng/redact-env.svg)](https://isitmaintained.com/project/47ng/redact-env)
-[![Number of open issues](https://isitmaintained.com/badge/open/47ng/redact-env.svg)](https://isitmaintained.com/project/47ng/redact-env)
+[![MIT License](https://img.shields.io/github/license/47ng/redact-env.svg?color=blue)](https://github.com/47ng/redact-env/blob/next/LICENSE)
+[![CI/CD](https://github.com/47ng/redact-env/workflows/CI%2FCD/badge.svg?branch=next)](https://github.com/47ng/redact-env/actions)
+[![Coverage Status](https://coveralls.io/repos/github/47ng/redact-env/badge.svg?branch=next)](https://coveralls.io/github/47ng/redact-env?branch=next)
 
-Redact values of critical environment variables in a string.
+</div>
+
+<p align="center">
+  Redact values of critical environment variables in a string.
+</p>
 
 ## ⚠️ Disclaimer
 
