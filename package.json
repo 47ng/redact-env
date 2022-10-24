@@ -33,9 +33,7 @@
     "size": "size-limit",
     "ci": "run-s test build size"
   },
-  "dependencies": {
-    "escape-string-regexp": "^5.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@commitlint/config-conventional": "^17.1.0",
     "@size-limit/preset-small-lib": "^8.1.0",

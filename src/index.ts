@@ -1,5 +1,3 @@
-import escapeStringRegexp from 'escape-string-regexp'
-
 /**
  * Build a RegExp matching the values of secure environment variables.
  *
@@ -18,7 +16,9 @@ export const build = (
       if (!value || ['true', 'false', 'null'].includes(value)) {
         return null
       }
-      const escapedValue = escapeStringRegexp(value)
+      const escapedValue = value
+        .replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+        .replace(/-/g, '\\x2d')
       return `(${escapedValue})`
     })
     .filter(x => !!x)
