@@ -63,7 +63,7 @@
   },
   "size-limit": [
     {
-      "path": "./dist/index.js",
+      "path": "./dist/index.mjs",
       "limit": "1 KB"
     }
   ],
