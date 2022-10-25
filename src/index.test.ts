@@ -1,4 +1,4 @@
-import redactEnv from './index'
+import * as redactEnv from './index'
 
 describe('redact', () => {
   it('passes through untouched with no env', () => {
@@ -263,10 +263,8 @@ describe('Real-life usage', () => {
   it('redacts JWTs', () => {
     // testing for dot-separated base64
     const env = {
-      a:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRGFAYSIsImlhdCI6MTUxNjIzOTAyMn0.0umQbI-3Le8b5mtQKAongS9vUsp6biOtyEGeXhHjZu8',
-      b:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphaG4gRGFAYSIsImlhdCI6MTUxNjIzOTAyMn0.8RIUw178Ye1qtSIXezU_ruB43mSYBrIdNsT2NWCMZXU'
+      a: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRGFAYSIsImlhdCI6MTUxNjIzOTAyMn0.0umQbI-3Le8b5mtQKAongS9vUsp6biOtyEGeXhHjZu8',
+      b: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphaG4gRGFAYSIsImlhdCI6MTUxNjIzOTAyMn0.8RIUw178Ye1qtSIXezU_ruB43mSYBrIdNsT2NWCMZXU'
     }
     const secrets = redactEnv.build(['a', 'b'], env)
     const provided = JSON.stringify(env)

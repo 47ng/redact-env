@@ -32,7 +32,7 @@ $ npm i redact-env
 ## Usage
 
 ```ts
-import redactEnv from 'redact-env'
+import * as redactEnv from 'redact-env'
 
 const secrets = redactEnv.build(['SECRET_ENV_VAR', 'MY_API_KEY'])
 
@@ -80,7 +80,7 @@ which will pose a problem if you parse them and dump them as numbers in a
 JSON object:
 
 ```ts
-import redactEnv from 'redact-env'
+import * as redactEnv from 'redact-env'
 
 process.env.PIN = '1234'
 

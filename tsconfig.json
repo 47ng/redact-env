@@ -3,11 +3,8 @@
     "baseUrl": ".",
     "target": "es2018",
     "module": "commonjs",
-    "lib": [],
-    "declaration": true,
-    "outDir": "./dist",
     "rootDir": "./src",
-    "paths": { "*": ["types/*"] },
+    "noEmit": true,
 
     // Strict Type-Checking Options
     "strict": true,
@@ -23,8 +20,6 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-
-    "esModuleInterop": true,
 
     // Experimental Options
     "experimentalDecorators": true,

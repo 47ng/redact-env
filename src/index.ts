@@ -4,10 +4,10 @@
  * @param secureEnv A list of environment variable names to redact
  * @param env Where to read the values from (defaults to process.env)
  */
-export const build = (
+export function build(
   secureEnv: string[],
   env: NodeJS.ProcessEnv = process.env
-): RegExp => {
+): RegExp {
   const unified = Object.keys(env)
     .filter(env => secureEnv.includes(env))
     .map(envName => {
@@ -41,17 +41,10 @@ export const build = (
  * @param regexp A RegExp built by redactEnv.build
  * @param replace What to replace redacted text with (defaults to '\[secure\]')
  */
-export const redact = (
+export function redact(
   input: string,
   regexp: RegExp,
   replace: string = '[secure]'
-) => {
+) {
   return input.replace(regexp, replace)
-}
-
-// --
-
-export default {
-  build,
-  redact
 }
